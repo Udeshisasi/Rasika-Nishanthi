@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rasika Nishanthi - Professional Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tyrian': '#4F0341',
+                        'gold': '#957C3D',
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1587351021759-3e566b3db83a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')",
+                    }
+                }
+            }
+        }
+        
+        // Mobile navigation toggle
+        function toggleNav() {
+            const nav = document.getElementById('mobile-menu');
+            nav.classList.toggle('hidden');
+        }
+
+        // Smooth scroll for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                    
+                    // Close mobile menu after clicking
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Initialize animation on scroll
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero-overlay {
+            background-color: rgba(79, 3, 65, 0.8);
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #4F0341 0%, #957C3D 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent 0%, #4F0341 10%, #4F0341 90%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 leading-relaxed">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-tyrian text-white shadow-md z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo/Name -->
+                <div class="font-bold text-xl">Rasika Nishanthi</div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="hover:text-gold transition-colors">About</a>
+                    <a href="#gallery" class="hover:text-gold transition-colors">Gallery</a>
+                    <a href="#experience" class="hover:text-gold transition-colors">Experience</a>
+                    <a href="#skills" class="hover:text-gold transition-colors">Skills</a>
+                    <a href="#education" class="hover:text-gold transition-colors">Education</a>
+                    <a href="#certifications" class="hover:text-gold transition-colors">Certifications</a>
+                    <a href="#contact" class="hover:text-gold transition-colors">Contact</a>
+                </div>
+                
+                <!-- Mobile Navigation Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleNav()" class="focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#about" class="hover:text-gold transition-colors">About</a>
+                    <a href="#gallery" class="hover:text-gold transition-colors">Gallery</a>
+                    <a href="#experience" class="hover:text-gold transition-colors">Experience</a>
+                    <a href="#skills" class="hover:text-gold transition-colors">Skills</a>
+                    <a href="#education" class="hover:text-gold transition-colors">Education</a>
+                    <a href="#certifications" class="hover:text-gold transition-colors">Certifications</a>
+                    <a href="#contact" class="hover:text-gold transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center bg-cover bg-center bg-fixed" style="background-image: url('/api/placeholder/1920/1080')">
+        <div class="absolute inset-0 bg-tyrian opacity-80"></div>
+        <div class="container mx-auto px-4 z-10">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-48 h-48 rounded-full border-4 border-gold overflow-hidden mb-8 shadow-lg">
+                    <img src="./Images/1.jpg" alt="Profile Picture" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-5xl text-white font-bold mb-4 animate-on-scroll">Rasika Nishanthi</h1>
+                <p class="text-2xl text-gold font-medium mb-6 animate-on-scroll">Nursing Officer | Health Promotion Specialist | Counselor</p>
+                <p class="text-white text-lg max-w-2xl mb-8 animate-on-scroll">With over 17 years of experience in the healthcare sector, I combine clinical expertise with a passion for health promotion and community well-being.</p>
+                <div class="flex flex-wrap gap-4 justify-center animate-on-scroll">
+                    <a href="/Resume/Rasika Nishanthi.pdf" class="btn-gradient py-3 px-8 rounded-full text-white font-medium shadow-lg inline-flex items-center hover:shadow-xl transition-all">
+                        <i class="fas fa-download mr-2"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 animate-on-scroll">
+                    <h2 class="text-3xl text-tyrian font-bold mb-8 pb-2 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-1 after:w-16 after:bg-gold">About Me</h2>
+                    <p class="mb-4 text-lg">I am a dedicated and compassionate Nursing Officer with over 17 years of experience in the government healthcare sector in Sri Lanka. My clinical journey has taken me through key units including the medical ward, neurology and maxillofacial surgery unit, emergency care, and pediatric wards.</p>
+                    <p class="mb-4 text-lg">I have built strong skills in patient-centered care, emergency response, critical thinking, and effective teamwork. I am passionate about promoting health, ensuring patient safety, and continuously learning to enhance my nursing practice.</p>
+                    <p class="text-lg">Currently, I am pursuing my studies in Health Promotion, aiming to contribute more effectively to preventive healthcare and community well-being.</p>
+                    <div class="mt-8 flex gap-4">
+                        <a href="https://www.linkedin.com/in/rasika-nishanthi-b85787319" class="text-tyrian hover:text-gold transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center animate-on-scroll">
+                    <div class="relative">
+                        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-gold"></div>
+                        <img src="./Images/5.jpg" alt="Professional Photo" class="w-full max-w-md relative z-10">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl text-tyrian font-bold mb-8 pb-2 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-1 after:w-16 after:bg-gold">Gallery</h2>
+            <p class="mb-8 text-lg max-w-3xl">Highlights from my professional journey in healthcare, health promotion activities, and community engagement.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="/api/placeholder/800/600" class="gallery-item block overflow-hidden rounded-lg shadow-lg animate-on-scroll">
+                    <img src="./Images/8.jpg" alt="Health Promotion Session" class="w-full h-64 object-cover">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-tyrian font-bold">Health Promotion Workshop</h3>
+                        <p class="text-gray-600">Conducting a health awareness session</p>
+                    </div>
+                </a>
+                
+                <a href="/api/placeholder/800/600" class="gallery-item block overflow-hidden rounded-lg shadow-lg animate-on-scroll">
+                    <img src="./Images/4.jpg" alt="Community Outreach" class="w-full h-64 object-cover">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-tyrian font-bold">Community Outreach</h3>
+                        <p class="text-gray-600">Working with local community groups</p>
+                    </div>
+                </a>
+                
+                <a href="/api/placeholder/800/600" class="gallery-item block overflow-hidden rounded-lg shadow-lg animate-on-scroll">
+                    <img src="./Images/2.jpg" alt="Professional Development" class="w-full h-64 object-cover">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-tyrian font-bold">Professional Development</h3>
+                        <p class="text-gray-600">Attending healthcare conferences</p>
+                    </div>
+                </a>
+                
+                <a href="/api/placeholder/800/600" class="gallery-item block overflow-hidden rounded-lg shadow-lg animate-on-scroll">
+                    <img src="./Images/9.jpg" alt="School Health Program" class="w-full h-64 object-cover">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-tyrian font-bold">School Health Program</h3>
+                        <p class="text-gray-600">Educating students on health matters</p>
+                    </div>
+                </a>
+                
+                <a href="/api/placeholder/800/600" class="gallery-item block overflow-hidden rounded-lg shadow-lg animate-on-scroll">
+                    <img src="./Images/3.jpg" alt="Healthcare Team" class="w-full h-64 object-cover">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-tyrian font-bold">Healthcare Team</h3>
+                        <p class="text-gray-600">Collaborating with medical professionals</p>
+                    </div>
+                </a>
+                
+                <a href="/api/placeholder/800/600" class="gallery-item block overflow-hidden rounded-lg shadow-lg animate-on-scroll">
+                    <img src="./Images/6.jpg" alt="Health Counseling" class="w-full h-64 object-cover">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-tyrian font-bold">Health Counseling</h3>
+                        <p class="text-gray-600">Providing one-on-one health guidance</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl text-tyrian font-bold mb-8 pb-2 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-1 after:w-16 after:bg-gold">Professional Experience</h2>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 timeline-line"></div>
+                
+                <!-- Timeline Items -->
+                <div class="grid grid-cols-1 gap-12">
+                    <!-- Experience 1 -->
+                    <div class="relative animate-on-scroll">
+                        <div class="md:w-1/2 md:pr-12 md:text-right ml-auto">
+                            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow relative md:mr-6">
+                                <div class="hidden md:block absolute top-5 right-0 w-5 h-5 rounded-full bg-white border-2 border-gold transform translate-x-10"></div>
+                                <p class="text-gold font-semibold">September 2016 - Present</p>
+                                <h3 class="text-xl text-tyrian font-bold my-2">Registered Nurse</h3>
+                                <p class="text-gray-600 italic mb-2">National Hospital, Galle</p>
+                                <p>Worked in the Oral and Maxillofacial Unit, delivering comprehensive pre- and post-operative care. Managed complex wounds, prevented infections, and collaborated with multidisciplinary teams to optimize patient recovery. Previously served 5 years in the neurology unit caring for patients with conditions like stroke, epilepsy, and neuromuscular disorders.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 2 -->
+                    <div class="relative animate-on-scroll">
+                        <div class="md:w-1/2 md:pl-12 md:text-left">
+                            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow relative md:ml-6">
+                                <div class="hidden md:block absolute top-5 left-0 w-5 h-5 rounded-full bg-white border-2 border-gold transform -translate-x-10"></div>
+                                <p class="text-gold font-semibold">2023 - 2024</p>
+                                <h3 class="text-xl text-tyrian font-bold my-2">Health Promoter</h3>
+                                <p class="text-gray-600 italic mb-2">Rajarata University of Sri Lanka</p>
+                                <p>Conducted field-based health promotion activities targeting schools, rural communities, and workplaces. Performed health assessments, awareness programs, and behavioral change communication sessions. Collaborated with public health officers and local stakeholders to address key health issues.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 3 -->
+                    <div class="relative animate-on-scroll">
+                        <div class="md:w-1/2 md:pr-12 md:text-right ml-auto">
+                            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow relative md:mr-6">
+                                <div class="hidden md:block absolute top-5 right-0 w-5 h-5 rounded-full bg-white border-2 border-gold transform translate-x-10"></div>
+                                <p class="text-gold font-semibold">November 2017 - 2019</p>
+                                <h3 class="text-xl text-tyrian font-bold my-2">Quality Liaison Nursing Officer</h3>
+                                <p class="text-gray-600 italic mb-2">Teaching Hospital Karapitiya</p>
+                                <p>Served as a link between clinical teams and the quality assurance unit. Conducted audits, monitored care standards, and supported staff in implementing updated practices to improve patient safety and quality of care.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 4 -->
+                    <div class="relative animate-on-scroll">
+                        <div class="md:w-1/2 md:pl-12 md:text-left">
+                            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow relative md:ml-6">
+                                <div class="hidden md:block absolute top-5 left-0 w-5 h-5 rounded-full bg-white border-2 border-gold transform -translate-x-10"></div>
+                                <p class="text-gold font-semibold">December 2014 - September 2016</p>
+                                <h3 class="text-xl text-tyrian font-bold my-2">Registered Nurse</h3>
+                                <p class="text-gray-600 italic mb-2">District Hospital Katharagama</p>
+                                <p>Provided comprehensive nursing care in a district hospital setting, managing various patient needs and supporting local healthcare delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 5 -->
+                    <div class="relative animate-on-scroll">
+                        <div class="md:w-1/2 md:pr-12 md:text-right ml-auto">
+                            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow relative md:mr-6">
+                                <div class="hidden md:block absolute top-5 right-0 w-5 h-5 rounded-full bg-white border-2 border-gold transform translate-x-10"></div>
+                                <p class="text-gold font-semibold">January 2004 - April 2014</p>
+                                <h3 class="text-xl text-tyrian font-bold my-2">Registered Nurse</h3>
+                                <p class="text-gray-600 italic mb-2">Sri Jayawardenepura General Hospital</p>
+                                <p>Worked 7 years in the medical ward, caring for patients with acute and chronic conditions. Administered medications, monitored vital signs, assisted with diagnostic procedures, and maintained accurate documentation while collaborating with multidisciplinary teams.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl text-tyrian font-bold mb-8 pb-2 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-1 after:w-16 after:bg-gold">Core Competencies</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="p-3 bg-tyrian rounded-full text-white mr-4">
+                            <i class="fas fa-heartbeat text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl text-tyrian font-bold">Clinical Skills</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-11/12 bg-gold"></div>
+                            Patient-Centered Care
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-10/12 bg-gold"></div>
+                            Wound Management
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-10/12 bg-gold"></div>
+                            Neurological Assessment
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-11/12 bg-gold"></div>
+                            Emergency Response
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-10/12 bg-gold"></div>
+                            Pre & Post-Operative Care
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="p-3 bg-tyrian rounded-full text-white mr-4">
+                            <i class="fas fa-hand-holding-heart text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl text-tyrian font-bold">Health Promotion</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-11/12 bg-gold"></div>
+                            School Health
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-10/12 bg-gold"></div>
+                            Nutrition Education
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-10/12 bg-gold"></div>
+                            Behavioral Change Communication
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-11/12 bg-gold"></div>
+                            Community Health Assessment
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-10/12 bg-gold"></div>
+                            Health Program Implementation
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="p-3 bg-tyrian rounded-full text-white mr-4">
+                            <i class="fas fa-users text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl text-tyrian font-bold">Professional Skills</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-11/12 bg-gold"></div>
+                            Counseling
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-10/12 bg-gold"></div>
+                            Quality Assurance
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-10/12 bg-gold"></div>
+                            Multidisciplinary Collaboration
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-11/12 bg-gold"></div>
+                            Healthcare Documentation
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 h-1 w-10/12 bg-gold"></div>
+                            Patient Education
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl text-tyrian font-bold mb-8 pb-2 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-1 after:w-16 after:bg-gold">Education</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-tyrian rounded-full text-white mr-4">
+                            <i class="fas fa-graduation-cap text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-tyrian font-bold">Bachelor of Science in Health Promotion</h3>
+                            <p class="font-semibold">Rajarata University of Sri Lanka</p>
+                            <p class="text-gold italic">2022 - 2025 (Expected)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-tyrian rounded-full text-white mr-4">
+                            <i class="fas fa-graduation-cap text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-tyrian font-bold">Bachelor of Nursing (Honours)</h3>
+                            <p class="font-semibold">University of Sunderland</p>
+                            <p class="text-gold italic mb-2">2021 - 2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-tyrian rounded-full text-white mr-4">
+                            <i class="fas fa-graduation-cap text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-tyrian font-bold mb-2">Diploma in Psychological Counselling</h3>
+                            <p class="font-semibold mb-1">University of Ruhuna</p>
+                            <p class="text-gold italic mb-2">2016 - 2017</p>
+                        </div>
+                    </div>
+                </div>  
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-tyrian rounded-full text-white mr-4">
+                            <i class="fas fa-graduation-cap text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-tyrian font-bold mb-2">Diploma in General Nursing</h3>
+                            <p class="font-semibold mb-1">National School of Nursing Sri Jayawardenapura</p>
+                            <p class="text-gold italic mb-2">January 2004 - January 2007</p>
+                        </div>
+                    </div>
+                </div> 
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-tyrian rounded-full text-white mr-4">
+                            <i class="fas fa-graduation-cap text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-tyrian font-bold mb-2">G.C.E Advanced Level, Bio.Science</h3>
+                    <p class="font-semibold mb-1">Sangamiththa Girls College Galle</p>
+                    <p class="text-gold italic mb-2">January 1998 - August 2000</p>
+                        </div>
+                    </div>
+                </div>        
+            </div>
+        </div> 
+    </section>
+    
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl text-tyrian font-bold mb-8 pb-2 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-1 after:w-16 after:bg-gold">Professional Certifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <h4 class="font-bold">Capacity Building Workshop on Health Education for Oral Health Promotion</h4>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <h4 class="font-bold">Medical Council Certification as a Registered Nurse</h4>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <h4 class="font-bold">Certificate Course in Drug Counseling</h4>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <h4 class="font-bold">Workshop on Counseling Parents of Cleft Babies</h4>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <h4 class="font-bold">Nursing Council Certification as a Registered Nurse</h4>
+                    </div>
+                </div>
+            </div>        
+        </div>
+        
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl text-tyrian font-bold mb-8 pb-2 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-1 after:w-16 after:bg-gold">Contact Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="text-4xl text-primary mb-4">✉️</div>
+                    <h3 class="text-xl font-semibold mb-2 text-dark">Email</h3>
+                    <p>bgrnishanthi@gmail.com</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="text-4xl text-primary mb-4">📞</div>
+                    <h3 class="text-xl font-semibold mb-2 text-dark">Phone</h3>
+                    <p>0774606840</p>
+                </div>
+                
+
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-tyrian hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                      <svg class="w-8 h-8 text-blue-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold ml-2 text-gray-800">LinkedIn</h3>
+                    </div>
+                    <div>
+                        <a href="https://www.linkedin.com/in/rasika-nishanthi-b85787319" target="_blank" class="text-blue-600 hover:text-blue-800 hover:underline transition-colors flex items-center">
+                            <span>Connect with me</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                          </a>
+                    </div>
+                    
+                  </div>
+                
+            </div>        
+        </div>
+        
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-tyrian text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-5">
+                <p class="mb-2">Thank you for viewing my professional portfolio</p>
+            </div>
+            <div class="text-center text-gray-300 text-sm">
+                <p>© 2025 Rasika Nishanthi. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>    
